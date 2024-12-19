@@ -11,7 +11,7 @@ resource "aws_iam_user" "user" {
 resource "aws_iam_user_login_profile" "user_login" {
   user                    = aws_iam_user.user.name
   password_length         = 16
-  password_reset_required = true
+  password_reset_required = false
 }
 # Create IAM policy for the user
 resource "aws_iam_policy" "user_policy" {
