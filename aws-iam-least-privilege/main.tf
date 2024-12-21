@@ -74,3 +74,18 @@ resource "aws_iam_role_policy_attachment" "s3_full_access" {
   role       = data.aws_iam_role.existing_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
 }
+# Add test file to app bucket
+resource "aws_s3_object" "app_test_file" {
+  bucket = aws_s3_bucket.app_bucket.id
+  key    = "test-file.txt"
+  source = "${path.module}/files/app-test.txt"
+  etag   = filemd5("${path.module}/files/app-test.txt")
+}
+
+# Add test file to offlimits bucket
+resource "aws_s3_object" "offlimits_test_file" {
+  bucket = aws_s3_bucket.offlimits_bucket.id
+  key    = "test-file.txt"
+  source = "${path.module}/files/offlimits-test.txt"
+  etag   = filemd5("${path.module}/files/offlimits-test.txt")
+}
