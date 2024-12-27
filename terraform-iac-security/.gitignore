@@ -23,3 +23,5 @@ terraform.rc
 
 # Ignore .terraform.lock.hcl
 .terraform.lock.hcl
+
+terraform-iac-security/regula
