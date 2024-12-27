@@ -1,0 +1,25 @@
+
+Let's create the .gitignore file:
+
+```text:terraform-iac-security/.gitignore
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Exclude all .tfvars files
+*.tfvars
+*.tfvars.json
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
+
+# Ignore .terraform.lock.hcl
+.terraform.lock.hcl
