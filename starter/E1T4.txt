@@ -1,5 +1,11 @@
 Based on the architecture diagram, and the steps you have taken so far to upload data and access the application web service, identify at least 2 obvious poor practices as it relates to security.  Include justification.
 
 # Poor practice 1
+The Application Load Balancer is listening on port 80 (HTTP) instead of port 443 (HTTPS). This means all traffic between clients and the load balancer is unencrypted and susceptible to man-in-the-middle attacks, packet sniffing, and data interception. Using plain HTTP exposes sensitive data like user credentials and session tokens in transit.
+
+Justification: In modern web applications, especially those handling user data and recipes (which could be proprietary content), all traffic should be encrypted using TLS/SSL via HTTPS. AWS Application Load Balancers support HTTPS listeners and can terminate SSL/TLS connections, providing secure communication channels.
 
 # Poor practice 2
+The Web Application instance has network access to both the Free Recipes and Secret Recipe Vault S3 buckets. This violates the principle of least privilege since the application only needs access to the Free Recipes bucket according to the requirements.
+
+Justification: The architecture explicitly states "The web application server does not need access to this bucket" regarding the Secret Recipe Vault. Having unnecessary access increases the attack surface - if the web application instance is compromised, an attacker could potentially access the secret recipes. The IAM roles and security groups should be configured to strictly limit access to only required resources.
