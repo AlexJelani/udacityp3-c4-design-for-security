@@ -2,29 +2,6 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: 'Security services stack for C3 project'
 
 Resources:
-  # AWS Config
-  ConfigRecorder:
-    Type: AWS::Config::ConfigurationRecorder
-    Properties:
-      Name: 'C3-ConfigRecorder'
-      RecordingGroup:
-        AllSupported: true
-        IncludeGlobalResources: true
-      RoleARN: !GetAtt ConfigRole.Arn
-
-  ConfigRole:
-    Type: AWS::IAM::Role
-    Properties:
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Effect: Allow
-            Principal:
-              Service: config.amazonaws.com
-            Action: sts:AssumeRole
-      ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/service-role/AWS_ConfigRole
-
   # Inspector
   InspectorAssessmentTarget:
     Type: AWS::Inspector::AssessmentTarget
@@ -50,10 +27,6 @@ Resources:
         - arn:aws:inspector:us-east-1:316112463485:rulespackage/0-rExsr2X8
 
 Outputs:
-  ConfigRecorderName:
-    Description: 'Name of the AWS Config Recorder'
-    Value: !Ref ConfigRecorder
-
   InspectorAssessmentTemplateName:
     Description: 'Name of the Inspector Assessment Template'
     Value: !Ref InspectorAssessmentTemplate

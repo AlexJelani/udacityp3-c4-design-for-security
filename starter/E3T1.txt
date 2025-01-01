@@ -1,3 +1,8 @@
-# Describe GuardDuty findings that were detected related to the brute force attack
+GuardDuty detected two SSH brute force attack findings:
+- Low severity finding: Attack from internal IP 10.192.11.22 targeting instance i-0232041fa296c7538
+- High severity finding: Attack from instance i-0a628f1b1eceb01f4 targeting internal IP 10.192.10.252
+Both were classified as UnauthorizedAccess:EC2/SSHBruteForce threat type.
 
-# Research the AWS Guard Duty documentation page and explain how GuardDuty may have detected this attack - i.e. what was its source of information.
+Screenshot captured as E3T1_guardduty.png showing both findings.
+
+GuardDuty detected this attack by analyzing VPC Flow Logs and AWS CloudTrail events. For SSH brute force detection specifically, GuardDuty monitors VPC Flow Logs to identify multiple failed SSH connection attempts from the same source. The service looks for patterns in network traffic that indicate repeated SSH authentication failures, which is characteristic of brute force attacks.
