@@ -1,3 +1,63 @@
-Research and analyze which of the vulnerabilities appear to be related to the code that was deployed for the environment in this project.
+  Security Vulnerabilities Analysis and Remediation
+Overview
+Analysis of security vulnerabilities identified in the deployed environment through AWS Config, Inspector, and Security Hub scans.
 
-Bonus - provide recommendations on how to remediate the vulnerabilities.
+Key Findings
+1. Application Load Balancer (ALB) Security
+HTTP to HTTPS redirection not configured
+Invalid header dropping not enabled
+Remediation:
+
+aws elbv2 modify-listener --listener-arn <listener-arn> --ssl-policy ELBSecurityPolicy-TLS-1-2-2017-01
+
+
+2. EC2 Instance Security
+Public IPs exposed
+IMDSv2 not enforced
+Remediation:
+
+aws ec2 modify-instance-metadata-options --instance-id <instance-id> --http-tokens required
+
+
+3. Encryption Configuration
+EBS encryption not enabled by default
+CloudTrail encryption disabled
+Remediation:
+
+aws ec2 enable-ebs-encryption-by-default
+
+4. Logging and Monitoring
+CloudTrail CloudWatch logs integration missing
+Log file validation disabled
+Remediation:
+
+aws cloudtrail update-trail --name <trail-name> --cloud-watch-logs-group-arn <log-group-arn> --cloud-watch-logs-role-arn <role-arn>
+
+5. Key Management
+KMS key rotation not enabled
+Remediation:
+
+aws kms enable-key-rotation --key-id <key-id>
+
+
+6. Athena Security
+Workgroup logging not enabled
+Remediation:
+
+aws athena update-work-group --work-group <workgroup-name> --configuration-updates ResultConfiguration={OutputLocation='s3://<bucket>/logs/'}
+
+
+Implementation Priority Matrix
+Priority	Area	Impact
+High	Encryption & Key Management	Data Protection
+High	EC2 Security	Infrastructure Security
+Medium	ALB Security	Access Control
+Medium	Logging Configuration	Audit Capability
+Low	Athena Security	Query Service Protection
+
+
+Additional Resources
+
+AWS Security Best Practices
+CIS Benchmarks
+AWS Security Hub Documentation
