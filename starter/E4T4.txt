@@ -1,8 +1,16 @@
+1. Additional architectural changes to reduce attack surface:
+- Move application behind a VPC endpoint
+- Implement AWS WAF
+- Use Application Load Balancer with strict security groups
 
-# What additional architectural change can be made to reduce the internet facing attack surface of the web application instance.
+2. VPC Endpoints impact:
+- VPC endpoints would provide network-level protection
+- However, IAM permissions would still control access
 
-# Assuming the IAM permissions for the S3 bucket are still insecure, would creating VPC private endpoints for S3 prevent the unauthorized access to the secrets bucket.
+3. S3 Encryption:
+- Default encryption only applies to new objects
+- Existing objects remain in their current state
 
-# Will applying default encryption setting to the s3 buckets encrypt the data that already exists?
-
-# What would happen if the original cloud formation templates are applied to this environment.
+4. CloudFormation Impact:
+- Changes made manually would be overwritten
+- Need to update templates to maintain security controls" > E4T4.txt
