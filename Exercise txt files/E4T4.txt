@@ -1,0 +1,16 @@
+1. Additional architectural changes to reduce attack surface:
+- Move application behind a VPC endpoint
+- Implement AWS WAF
+- Use Application Load Balancer with strict security groups
+
+2. VPC Endpoints impact:
+- VPC endpoints would provide network-level protection
+- However, IAM permissions would still control access
+
+3. S3 Encryption:
+- Default encryption only applies to new objects
+- Existing objects remain in their current state
+
+4. CloudFormation Impact:
+- Changes made manually would be overwritten
+- Need to update templates to maintain security controls" > E4T4.txt
