@@ -1,13 +1,18 @@
-# Identify tools that will allow you to do the following:
+Infrastructure as Code Scanning Tools:
+- Checkov
+- Detects security group rules allowing unrestricted access (0.0.0.0/0)
+- Identifies unencrypted S3 buckets
+Example vulnerability: Missing encryption on S3 bucket definition in CloudFormation
 
-## Scan infrastructure as code templates
+AMI/Container Scanning Tools:
+- Amazon Inspector
+- Clair
+- Aqua Security
+Example vulnerability: Critical CVE in OpenSSL package version
 
-### Example vulnerability
+AWS Environment Configuration Scanning:
+- AWS Security Hub
+- AWS Config
+- CloudSploit
+Example vulnerability: S3 bucket with public read access enabled" > E5T2.txt
 
-##Scan AMI’s or containers for OS vulnerabilities
-
-### Example vulnerability
-
-##Scan an AWS environment for cloud configuration vulnerabilities
-
-### Example vulnerability
