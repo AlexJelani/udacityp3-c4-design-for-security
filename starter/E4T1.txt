@@ -1,5 +1,9 @@
+Security Changes to Prevent SSH Brute Force:
+1. Disable password authentication and enforce key-based SSH only
+2. Restrict SSH access to specific IP ranges using Security Groups
+3. Implement AWS Systems Manager Session Manager for secure instance access
 
-
-# Identify 2-3 changes that can be made to our environment to prevent an ssh brute force attack from the internet.
-
-# Neither instance should have had access to the secret recipes bucket, in the even that instance API credentials were compromised how could we have prevented access to sensitive data.
+Preventing Access to Secret Recipes:
+1. Implement S3 bucket encryption
+2. Use IAM roles with strict least-privilege permissions
+3. Enable VPC endpoints with resource policies" > E4T1.txt
